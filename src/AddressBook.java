@@ -22,9 +22,9 @@ public class AddressBook {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length == 2) {
-                    String number = parts[0];
-                    String name = parts[1];
-                    contactos.put(number, name);
+                    String numero = parts[0];
+                    String nombre = parts[1];
+                    contactos.put(numero, nombre);
                 }
             }
         } catch (IOException e) {
@@ -36,9 +36,9 @@ public class AddressBook {
     public void save() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
             for (Map.Entry<String, String> entry : contactos.entrySet()) {
-                String number = entry.getKey();
-                String name = entry.getValue();
-                writer.write(number + "," + name);
+                String numero = entry.getKey();
+                String nombre = entry.getValue();
+                writer.write(numero + "," + nombre);
                 writer.newLine();
             }
         } catch (IOException e) {
@@ -50,26 +50,26 @@ public class AddressBook {
     public void list() {
         System.out.println("Contactos:");
         for (Map.Entry<String, String> entry : contactos.entrySet()) {
-            String number = entry.getKey();
-            String name = entry.getValue();
-            System.out.println(number + " : " + name);
+            String numero = entry.getKey();
+            String nombre = entry.getValue();
+            System.out.println(numero + " : " + nombre);
         }
     }
 
     //metodo create para pedir numero y nombre de contacto y agregar al archivo
-    public void create(String number, String name) {
-        contactos.put(number, name);
-        System.out.println("Contacto creado: " + number + " : " + name);
+    public void create(String numero, String nombre) {
+        contactos.put(numero, nombre);
+        System.out.println("Contacto creado: " + numero + " : " + nombre);
     }
 
     //metodo delete que elimina un contacto si el numero se encuentra en el hashmap
-    public void delete(String number) {
-        if (contactos.containsKey(number)) {
-            String name = contactos.get(number);
-            contactos.remove(number);
-            System.out.println("Contacto eliminado: " + number + " : " + name);
+    public void delete(String numero) {
+        if (contactos.containsKey(numero)) {
+            String nombre = contactos.get(numero);
+            contactos.remove(numero);
+            System.out.println("Contacto eliminado: " + numero + " : " + nombre);
         } else {
-            System.out.println("No se encontró el contacto con el número: " + number);
+            System.out.println("No se encontró el contacto con el número: " + numero);
         }
     }
 }
