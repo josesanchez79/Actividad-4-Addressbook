@@ -2,14 +2,20 @@ import java.io.*;
 import java.util.*;
 
 public class AddressBook {
+
+
+    //atributos addressbook
     private HashMap<String, String> contactos;
     private String archivo;
 
+    //constructor usado para generar addressbook usando el hashmap y el string archivo
     public AddressBook(String archivo) {
         this.contactos = new HashMap<>();
         this.archivo = archivo;
     }
 
+
+    //metodo load para cargar archivo
     public void load() {
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
             String line;
@@ -26,6 +32,7 @@ public class AddressBook {
         }
     }
 
+    //metodo save para guardar cambios en contactos
     public void save() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
             for (Map.Entry<String, String> entry : contactos.entrySet()) {
@@ -39,6 +46,7 @@ public class AddressBook {
         }
     }
 
+    //metodo list para mostrar todos los contactos
     public void list() {
         System.out.println("Contactos:");
         for (Map.Entry<String, String> entry : contactos.entrySet()) {
@@ -48,11 +56,13 @@ public class AddressBook {
         }
     }
 
+    //metodo create para pedir numero y nombre de contacto y agregar al archivo
     public void create(String number, String name) {
         contactos.put(number, name);
         System.out.println("Contacto creado: " + number + " : " + name);
     }
 
+    //metodo delete que elimina un contacto si el numero se encuentra en el hashmap
     public void delete(String number) {
         if (contactos.containsKey(number)) {
             String name = contactos.get(number);

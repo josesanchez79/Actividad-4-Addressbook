@@ -4,12 +4,17 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        //inicializacion de objeto addressbook
         AddressBook contactos = new AddressBook("Contactos.txt");
         contactos.load();
 
-        Scanner scanner = new Scanner(System.in);
+        //inicializacion de scanner y variable para menu
+        Scanner lector = new Scanner(System.in);
         boolean exit = false;
 
+
+        //uso de while para mantener loop hasta que el usuario decida salir
         while (!exit) {
             System.out.println("\nPor favor elige una de las siguientes opciones");
             System.out.println("1.- Mostrar contactos");
@@ -18,23 +23,24 @@ public class Main {
             System.out.println("4.- Guardar cambios");
             System.out.println("5.- Salir");
 
-            int opc = scanner.nextInt();
-            scanner.nextLine();
+            int opc = lector.nextInt();
+            lector.nextLine();
 
+            //uso de switch para generar menu
             switch (opc) {
                 case 1:
                     contactos.list();
                     break;
                 case 2:
                     System.out.print("Ingrese el numero de contacto: ");
-                    String number = scanner.nextLine();
+                    String number = lector.nextLine();
                     System.out.print("Ingrese el nombre de contacto: ");
-                    String name = scanner.nextLine();
+                    String name = lector.nextLine();
                     contactos.create(number, name);
                     break;
                 case 3:
                     System.out.print("Ingrese el numero de contacto a eliminar: ");
-                    String deleteNumber = scanner.nextLine();
+                    String deleteNumber = lector.nextLine();
                     contactos.delete(deleteNumber);
                     break;
                 case 4:
@@ -50,6 +56,6 @@ public class Main {
             }
         }
 
-        scanner.close();
+        lector.close();
     }
 }
